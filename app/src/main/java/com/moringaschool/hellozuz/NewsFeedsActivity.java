@@ -5,9 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 
 public class NewsFeedsActivity extends AppCompatActivity {
+    List<NewsData> myNews = new ArrayList<>();
+    String[] names = new String[] {
+            "Vincent", "Ibrahimovic", "Kevin", "MUtali", "Uhuru", "Kariuki", "Kagwe", "Thaisons", "Thompsons",
+            "Collins", "Fernandes"
+    };
+    String[] news = new String[] {
+            "Vincent is here typing", "Ibrahimovic says hello to all", "What is today's topic of discussion guys", "MUtali is saying that we should remamber to keep time since, we still have to get back to classes and study to prepare for lessons and exams make sure you all keep time", "I will be talking with the school head so that he may consider giving us more time to discuss this topic. It seems too wide", "That's fine Uhuru", "Observe health guidelines also guys, take care not to be infected by Covid19", "No worries kagwe", "That is fine too",
+            "I think you guys have exhausted everything, I have no issue", "Fernandes is also okay here."
+    };
+    int[] imgResrces = new int[] {
+
+    }
     @BindView(R.id.newsList) ListView mListView;
 
     @Override
