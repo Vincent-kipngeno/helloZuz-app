@@ -2,6 +2,7 @@ package com.moringaschool.hellozuz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -9,8 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class NewsFeedsActivity extends AppCompatActivity {
+    Context context = NewsFeedsActivity.this;
     List<NewsData> myNews = new ArrayList<>();
     String[] names = new String[] {
             "Vincent", "Ibrahimovic", "Kevin", "MUtali", "Uhuru", "Kariuki", "Kagwe", "Thaisons", "Thompsons",
@@ -21,14 +24,25 @@ public class NewsFeedsActivity extends AppCompatActivity {
             "I think you guys have exhausted everything, I have no issue", "Fernandes is also okay here."
     };
     int[] imgResrces = new int[] {
-
-    }
+            R.drawable.slack, R.drawable.slack, R.drawable.slack, R.drawable.slack, R.drawable.slack, R.drawable.slack, R.drawable.slack, R.drawable.slack,
+            R.drawable.slack, R.drawable.slack
+    };
     @BindView(R.id.newsList) ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_feeds2);
+        ButterKnife.bind(this);
 
+        getNewsList();
+        mListView.setAdapter(new NewsAdapter(context, myNews, ));
+    }
+
+    private  void getNewsList () {
+        for (int i = 0; i < news.length; i++) {
+            NewsData newsData = new NewsData(news[i], names[1], imgResrces[1]);
+            myNews.add(newsData);
+        }
     }
 }

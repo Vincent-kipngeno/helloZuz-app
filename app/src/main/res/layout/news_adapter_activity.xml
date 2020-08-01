@@ -8,9 +8,10 @@
 
     <ImageView
         android:id="@+id/profilePic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/slack"/>
+        android:layout_width="89dp"
+        android:layout_height="80dp"
+        android:src="@drawable/slack" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
