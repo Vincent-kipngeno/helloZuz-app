@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
     android:padding="0dp"
     tools:context=".MainActivity">
 
@@ -19,12 +20,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/lion" />
 
+    <EditText
+        android:id="@+id/editTextTextPassword2"
+        android:layout_width="210dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/colorPinkLight"
+        android:ems="10"
+        android:hint="Enter password"
+        android:inputType="textPassword"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="115dp"
         android:layout_height="101dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/gradient"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
@@ -35,7 +51,7 @@
         android:layout_width="110dp"
         android:layout_height="19dp"
         android:text="TextView"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
@@ -49,7 +65,7 @@
         android:layout_marginTop="16dp"
         android:text="WELCOME TO helloZuz!"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPink"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,10 +79,40 @@
         android:layout_marginTop="12dp"
         android:text="helloZuz is going to help you find new friends and also to find your matches and partners. You are going to have worldwide news feeds from our users and also have direct messages with friends and partners"
         android:textAlignment="center"
-        android:textColor="?attr/colorError"
+        android:textColor="?android:attr/colorForegroundInverse"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="210dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/colorPinkLight"
+        android:ems="10"
+        android:hint="Enter UserName"
+        android:inputType="textPersonName"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:background="@drawable/gradient"
+        android:text="LOGIN"
+        android:textColor="@color/colorPinkLight"
+        android:textColorHint="@color/colorPinkLight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2"
+        app:layout_constraintVertical_bias="0.217" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
