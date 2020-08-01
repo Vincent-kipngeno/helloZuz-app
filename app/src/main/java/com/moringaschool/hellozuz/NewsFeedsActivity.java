@@ -3,6 +3,7 @@ package com.moringaschool.hellozuz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -34,9 +35,9 @@ public class NewsFeedsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_feeds2);
         ButterKnife.bind(this);
-
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "font/CaviarDreams.ttf");
         getNewsList();
-        mListView.setAdapter(new NewsAdapter(context, myNews, ));
+        mListView.setAdapter(new NewsAdapter(context, myNews, typeface));
     }
 
     private  void getNewsList () {
