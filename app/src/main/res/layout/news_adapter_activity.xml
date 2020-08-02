@@ -8,7 +8,7 @@
     android:padding="10dp">
 
     <ImageView
-        android:id="@+id/profilePic"
+        android:id="@+id/userProfile"
         android:layout_width="89dp"
         android:layout_height="69dp"
         android:src="@drawable/slack" />

@@ -14,11 +14,9 @@ import java.util.List;
 public class NewsAdapter extends BaseAdapter {
     private Context mContext;
     private List<NewsData> mNews;
-    private Typeface mTypeFace;
-    public NewsAdapter (Context context, List<NewsData> news, Typeface typeFace){
+    public NewsAdapter (Context context, List<NewsData> news){
         this.mContext = context;
         this.mNews = news;
-        this.mTypeFace = typeFace;
     }
     @Override
     public int getCount() {
@@ -51,16 +49,12 @@ public class NewsAdapter extends BaseAdapter {
         }
         mViewHolder.messageView.setText(mNews.get(position).getNews());
         mViewHolder.nameView.setText(mNews.get(position).getName());
-        mViewHolder.imageView.setImageResource(mNews.get(position).getImgResId());
-        mViewHolder.nameView.setTypeface(mTypeFace);
         return convertView;
     }
     private class MyViewHolder {
         TextView nameView, messageView;
-        ImageView imageView;
 
         public MyViewHolder(View item) {
-            imageView = (ImageView) item.findViewById(R.id.profilePic);
             nameView = (TextView) item.findViewById(R.id.name);
             messageView = (TextView) item.findViewById(R.id.newsContent);
         }

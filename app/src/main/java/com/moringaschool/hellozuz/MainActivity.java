@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,9 +30,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view == mLoginButton) {
             String userName = mUserName.getText().toString();
+            Log.e("MainActivity", "I have been reached");
             Intent intent = new Intent (MainActivity.this, NewsFeedsActivity.class);
             intent.putExtra("user", userName);
             startActivity(intent);
+            Log.d("MainActivity", "newsFeeds started");
         }
     }
 }
