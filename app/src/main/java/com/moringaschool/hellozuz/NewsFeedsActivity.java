@@ -4,8 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewsFeedsActivity extends AppCompatActivity {
+public class NewsFeedsActivity extends AppCompatActivity implements View.OnClickListener {
     Context context = NewsFeedsActivity.this;
     List<NewsData> myNews = new ArrayList<>();
     String[] names = new String[] {
@@ -28,6 +29,8 @@ public class NewsFeedsActivity extends AppCompatActivity {
     };
     @BindView(R.id.newsList) ListView mListView;
     @BindView(R.id.introText) TextView mIntroText;
+    @BindView(R.id.directMessages) Button mDirectMessages;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +42,21 @@ public class NewsFeedsActivity extends AppCompatActivity {
         mIntroText.setText(String.format("Welcome To Our NewsFeeds %s", userName));
         getNewsList();
         mListView.setAdapter(new NewsAdapter(context, myNews));
+        mDirectMessages.setOnClickListener(this);
     }
 
     private  void getNewsList () {
         for (int i = 0; i < news.length; i++) {
             NewsData newsData = new NewsData(news[i], names[i]);
             myNews.add(newsData);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == mDirectMessages){
+            Intent messageIntent = new Intent(context, MessageListActivity.class);
+            startActivity(messageIntent);
         }
     }
 }
