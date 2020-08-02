@@ -6,4 +6,6 @@
     <color name="colorPurple">#8e24aa</color>
     <color name="colorPink">#f50057</color>
     <color name="colorPinkLight">#e91e63</color>
+    <color name="colorBrown">#3e2723</color>
+    <color name="colorBrownLight">#4e342e</color>
 </resources>
