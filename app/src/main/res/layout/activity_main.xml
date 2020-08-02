@@ -81,7 +81,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="12dp"
         android:text="helloZuz is going to help you find new friends and also to find your matches and partners. You are going to have worldwide news feeds from our users and also have direct messages with friends and partners"
-        android:textAlignment="inherit"
+        android:textAlignment="center"
         android:textColor="?android:attr/colorForegroundInverse"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"

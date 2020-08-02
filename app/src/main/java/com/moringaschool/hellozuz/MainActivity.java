@@ -3,11 +3,13 @@ package com.moringaschool.hellozuz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,6 +17,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.userName) EditText mUserName;
     @BindView(R.id.loginButton) Button mLoginButton;
+    @BindView(R.id.aboutText) TextView mAboutText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
+        mAboutText.setTypeface(typeface);
         mLoginButton.setOnClickListener(this);
     }
 
