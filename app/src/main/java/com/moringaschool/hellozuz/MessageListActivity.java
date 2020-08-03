@@ -45,6 +45,7 @@ public class MessageListActivity extends AppCompatActivity {
         });
     }
 
+    //create message object from the above given arrays then add them to myMessages arrayList
     private  void getMessageList () {
         for (int i = 0; i < messages.length; i++) {
             MessageData messageData = new MessageData(messages[i], senders[i]);

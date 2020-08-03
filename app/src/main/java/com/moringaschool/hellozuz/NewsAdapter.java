@@ -51,6 +51,8 @@ public class NewsAdapter extends BaseAdapter {
         mViewHolder.nameView.setText(mNews.get(position).getName());
         return convertView;
     }
+
+    // create a view holder just to have clean refactored code to reduce complexity
     private class MyViewHolder {
         TextView nameView, messageView;
 

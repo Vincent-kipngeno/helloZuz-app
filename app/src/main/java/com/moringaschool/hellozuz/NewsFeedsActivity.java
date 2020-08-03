@@ -53,6 +53,7 @@ public class NewsFeedsActivity extends AppCompatActivity implements View.OnClick
         mDirectMessages.setOnClickListener(this);
     }
 
+    //create news object from arrays given above and add each to myNews arraylist declared above
     private  void getNewsList () {
         for (int i = 0; i < news.length; i++) {
             NewsData newsData = new NewsData(news[i], names[i]);

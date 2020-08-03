@@ -49,6 +49,8 @@ public class MessageAdapter extends BaseAdapter {
         mViewHolder.nameView.setText(mMessages.get(position).getSender());
         return convertView;
     }
+
+    // create a view holder just to have clean refactored code to reduce complexity
     private class MyViewHolder {
         TextView nameView, messageView;
 
