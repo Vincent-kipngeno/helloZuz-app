@@ -40,7 +40,6 @@ public class MessageListActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String restaurant = ((TextView)view).getText().toString();
                 Toast.makeText(MessageListActivity.this, "Chat box will open when clicked", Toast.LENGTH_LONG).show();
             }
         });
