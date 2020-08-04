@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
-        mAboutText.setTypeface(typeface);
         mLoginButton.setOnClickListener(this);
     }
 

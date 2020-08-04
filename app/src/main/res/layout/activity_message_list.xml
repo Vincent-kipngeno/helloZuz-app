@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBrown"
     tools:context=".MessageListActivity">
 
     <TextView
         android:id="@+id/pageHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/background_dark"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="9dp"
         android:text="MESSAGES"
         android:textAllCaps="true"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textColorHint="@color/colorPink"
         android:textSize="20sp"
         android:textStyle="bold" />
