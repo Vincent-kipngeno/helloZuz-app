@@ -8,4 +8,15 @@
     <color name="colorPinkLight">#e91e63</color>
     <color name="colorBrown">#3e2723</color>
     <color name="colorBrownLight">#4e342e</color>
+    <color name="colorOrange">#dd2c00</color>
+    <color name="colorLightYellow">#ffab00</color>
+    <color name="colorYellow">#ffc107</color>
+    <color name="colorRed">#d50000</color>
+    <color name="colorDarkRed">#b71c1c</color>
+    <color name="colorDeepPurple">#6200ea</color>
+    <color name="colorPrimaryPurple">#311b92</color>
+    <color name="colorBlue">#1a237e</color>
+    <color name="colorGreen">#1b5e20</color>
+    <color name="colorLightGreen">#00c853</color>
+    <color name="colorLime">#aeea00</color>
 </resources>
