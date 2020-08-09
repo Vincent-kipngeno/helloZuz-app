@@ -31,16 +31,6 @@
         android:divider="@drawable/gradient"
         android:dividerHeight="1dp"
         android:layout_below="@+id/introText"
-        android:layout_above="@id/directMessages"
         android:layout_alignParentEnd="true" >
     </ListView>
-
-    <Button
-        android:id="@+id/directMessages"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-3dp"
-        android:background="@drawable/gradient"
-        android:text="Direct Messages" />
 </RelativeLayout>

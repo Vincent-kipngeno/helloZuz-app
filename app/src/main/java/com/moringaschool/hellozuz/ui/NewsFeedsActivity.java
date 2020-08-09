@@ -22,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewsFeedsActivity extends AppCompatActivity implements View.OnClickListener {
+public class NewsFeedsActivity extends AppCompatActivity {
     Context context = NewsFeedsActivity.this;
     List<NewsData> myNews = new ArrayList<>();
     String[] names = new String[] {
@@ -35,7 +35,6 @@ public class NewsFeedsActivity extends AppCompatActivity implements View.OnClick
     };
     @BindView(R.id.newsList) ListView mListView;
     @BindView(R.id.introText) TextView mIntroText;
-    @BindView(R.id.directMessages) Button mDirectMessages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,6 @@ public class NewsFeedsActivity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(NewsFeedsActivity.this, "Thread will show when clicked", Toast.LENGTH_LONG).show();
             }
         });
-        mDirectMessages.setOnClickListener(this);
     }
 
     //create news object from arrays given above and add each to myNews arraylist declared above
@@ -65,11 +63,4 @@ public class NewsFeedsActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view == mDirectMessages){
-            Intent messageIntent = new Intent(context, MessageListActivity.class);
-            startActivity(messageIntent);
-        }
-    }
 }
