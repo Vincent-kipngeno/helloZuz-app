@@ -8,7 +8,7 @@
     tools:context=".ui.Dashboard">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/dashboardTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/directMessageButton"
         android:layout_width="177dp"
         android:layout_height="135dp"
         android:layout_marginStart="16dp"
@@ -33,10 +33,10 @@
         android:text="Direct Messages"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/dashboardTitle" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/generalMessageButton"
         android:layout_width="184dp"
         android:layout_height="138dp"
         android:layout_marginEnd="8dp"
@@ -47,15 +47,15 @@
         android:paddingTop="20dp"
         android:text="General Messages"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/directMessageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.88"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/directMessageButton"
+        app:layout_constraintTop_toTopOf="@+id/directMessageButton"
         app:layout_constraintVertical_bias="0.13" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/flickrButton"
         android:layout_width="233dp"
         android:layout_height="117dp"
         android:layout_marginTop="32dp"
@@ -68,7 +68,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/directMessageButton"
         app:layout_constraintVertical_bias="0.100000024" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
