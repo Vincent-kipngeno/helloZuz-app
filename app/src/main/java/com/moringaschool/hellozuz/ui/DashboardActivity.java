@@ -43,7 +43,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             startActivity(intent);
         }
         if (view == mFlickrButton){
-            Intent intent = new Intent (DashboardActivity.this, FlickrActivity.class);
+            Intent intent = new Intent (DashboardActivity.this, PhotoCollectionsActivity.class);
             startActivity(intent);
         }
     }

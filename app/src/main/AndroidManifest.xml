@@ -9,16 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.DashboardActivity"></activity>
+        <activity android:name=".ui.PhotoCollectionsActivity"></activity>
+        <activity android:name=".ui.DashboardActivity" />
         <activity android:name=".ui.MessageListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.moringaschool.hellozuz.ui.NewsFeedsActivity"></meta-data>
+                android:value="com.moringaschool.hellozuz.ui.NewsFeedsActivity" />
         </activity>
         <activity android:name=".ui.NewsFeedsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.moringaschool.hellozuz.ui.MainActivity"></meta-data>
+                android:value="com.moringaschool.hellozuz.ui.MainActivity" />
         </activity>
         <activity android:name=".ui.MainActivity">
             <intent-filter>
