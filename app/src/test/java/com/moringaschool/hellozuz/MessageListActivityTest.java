@@ -3,6 +3,8 @@ package com.moringaschool.hellozuz;
 import android.os.Build;
 import android.widget.TextView;
 
+import com.moringaschool.hellozuz.ui.MessageListActivity;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +13,6 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.*;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = {Build.VERSION_CODES.O_MR1})

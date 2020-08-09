@@ -1,4 +1,4 @@
-package com.moringaschool.hellozuz;
+package com.moringaschool.hellozuz.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.moringaschool.hellozuz.adapter.NewsAdapter;
+import com.moringaschool.hellozuz.models.NewsData;
+import com.moringaschool.hellozuz.R;
 
 import java.util.ArrayList;
 import java.util.List;

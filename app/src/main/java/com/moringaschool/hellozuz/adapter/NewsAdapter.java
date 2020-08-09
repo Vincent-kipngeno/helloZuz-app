@@ -1,4 +1,4 @@
-package com.moringaschool.hellozuz;
+package com.moringaschool.hellozuz.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,23 +7,26 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.moringaschool.hellozuz.R;
+import com.moringaschool.hellozuz.models.NewsData;
+
 import java.util.List;
 
-public class MessageAdapter extends BaseAdapter {
+public class NewsAdapter extends BaseAdapter {
     private Context mContext;
-    private List<MessageData> mMessages;
-    public MessageAdapter (Context context, List<MessageData> messages){
+    private List<NewsData> mNews;
+    public NewsAdapter (Context context, List<NewsData> news){
         this.mContext = context;
-        this.mMessages = messages;
+        this.mNews = news;
     }
     @Override
     public int getCount() {
-        return mMessages.size();
+        return mNews.size();
     }
 
     @Override
-    public MessageData getItem(int i) {
-        return mMessages.get(i);
+    public NewsData getItem(int i) {
+        return mNews.get(i);
     }
 
     @Override
@@ -35,18 +38,18 @@ public class MessageAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        MessageAdapter.MyViewHolder mViewHolder;
+        MyViewHolder mViewHolder;
         if (convertView == null) {
             // get layout from xml file
-            convertView = inflater.inflate(R.layout.message_adapter_activity, null);
-            mViewHolder = new MessageAdapter.MyViewHolder(convertView);
+            convertView = inflater.inflate(R.layout.news_adapter_activity, null);
+            mViewHolder = new MyViewHolder(convertView);
             convertView.setTag(mViewHolder);
 
         } else {
-            mViewHolder = (MessageAdapter.MyViewHolder) convertView.getTag();
+            mViewHolder = (MyViewHolder) convertView.getTag();
         }
-        mViewHolder.messageView.setText(mMessages.get(position).getMessage());
-        mViewHolder.nameView.setText(mMessages.get(position).getSender());
+        mViewHolder.messageView.setText(mNews.get(position).getNews());
+        mViewHolder.nameView.setText(mNews.get(position).getName());
         return convertView;
     }
 
@@ -55,9 +58,8 @@ public class MessageAdapter extends BaseAdapter {
         TextView nameView, messageView;
 
         public MyViewHolder(View item) {
-            nameView = (TextView) item.findViewById(R.id.senderName);
-            messageView = (TextView) item.findViewById(R.id.messageContent);
+            nameView = (TextView) item.findViewById(R.id.name);
+            messageView = (TextView) item.findViewById(R.id.newsContent);
         }
     }
 }
-

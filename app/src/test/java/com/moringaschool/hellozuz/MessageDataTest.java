@@ -1,5 +1,7 @@
 package com.moringaschool.hellozuz;
 
+import com.moringaschool.hellozuz.models.MessageData;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;

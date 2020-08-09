@@ -1,4 +1,4 @@
-package com.moringaschool.hellozuz;
+package com.moringaschool.hellozuz.models;
 
 public class NewsData {
     String news;

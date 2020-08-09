@@ -1,4 +1,4 @@
-package com.moringaschool.hellozuz;
+package com.moringaschool.hellozuz.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.moringaschool.hellozuz.models.MessageData;
+import com.moringaschool.hellozuz.R;
+import com.moringaschool.hellozuz.adapter.MessageAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

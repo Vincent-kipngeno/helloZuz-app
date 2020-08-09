@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.widget.TextView;
 
+import com.moringaschool.hellozuz.ui.MainActivity;
+import com.moringaschool.hellozuz.ui.NewsFeedsActivity;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +16,6 @@ import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowActivity;
 
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.*;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = {Build.VERSION_CODES.O_MR1})
