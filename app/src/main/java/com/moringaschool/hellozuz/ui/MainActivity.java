@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view == mLoginButton) {
             String userName = mUserName.getText().toString();
             Log.e("MainActivity", "I have been reached");
-            Intent intent = new Intent (MainActivity.this, NewsFeedsActivity.class);
+            Intent intent = new Intent (MainActivity.this, DashboardActivity.class);
             intent.putExtra("user", userName);
             startActivity(intent);
             Log.d("MainActivity", "newsFeeds started");
