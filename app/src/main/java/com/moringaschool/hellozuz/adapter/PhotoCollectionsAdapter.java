@@ -1,6 +1,7 @@
 package com.moringaschool.hellozuz.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,10 @@ import com.moringaschool.hellozuz.models.Photo;
 
 import java.util.List;
 import com.moringaschool.hellozuz.R;
+import com.moringaschool.hellozuz.ui.PhotoDetailsActivity;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,7 +61,11 @@ public class PhotoCollectionsAdapter extends RecyclerView.Adapter<PhotoCollectio
 
         @Override
         public void onClick(View view) {
-
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, PhotoDetailsActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("photos", Parcels.wrap(mPhotos));
+            mContext.startActivity(intent);
         }
 
         public void bindRestaurant(Photo photo) {
