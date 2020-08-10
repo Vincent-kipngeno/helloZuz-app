@@ -19,8 +19,12 @@
             android:id="@+id/pagerHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorDarkRed"
+            android:backgroundTint="@color/colorLime"
+            android:fadeScrollbars="true"
             android:paddingTop="4dp"
-            android:paddingBottom="4dp" />
+            android:paddingBottom="4dp"
+            android:scrollbarStyle="insideInset" />
 
     </androidx.viewpager.widget.ViewPager>
 

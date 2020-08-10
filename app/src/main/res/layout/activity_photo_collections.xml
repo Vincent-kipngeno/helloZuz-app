@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:background="@color/colorLime"
-        android:text="Button"
+        android:text="Search"
         app:layout_constraintBottom_toBottomOf="@+id/photoSearchText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/photoSearchText" />
