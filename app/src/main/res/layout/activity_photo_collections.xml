@@ -59,7 +59,7 @@
         android:ems="10"
         android:hint="Enter Search Term"
         android:inputType="textPersonName"
-        android:textColor="@color/colorOrange"
+        android:textColor="@color/colorLightYellow"
         android:textColorHint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toStartOf="@+id/searchButton"
         app:layout_constraintStart_toStartOf="parent"

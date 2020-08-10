@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -81,39 +82,45 @@ public class PhotoCollectionsActivity extends AppCompatActivity implements View.
     @Override
     public void onClick(View view) {
         if (view == mSearchButton){
-            showProgressBar();
             String term = mPhotoSearchText.getText().toString();
+            if (term.trim().isEmpty()){
+                mPhotoSearchText.setText("");
+                mPhotoSearchText.setHint("This Field is required !!!");
+                mPhotoSearchText.setHintTextColor(Color.RED);
+            } else {
+                mPhotoSearchText.setTextColor(Color.BLUE);
+                showProgressBar();
+                FlickrApi client = FlickrClient.getClient();
 
-            FlickrApi client = FlickrClient.getClient();
+                Call<FlickrPhotosSearchApiResponse> call = client.getPhotos("flickr.photos.search", FLICKR_API_KEY, term, "json","1");
 
-            Call<FlickrPhotosSearchApiResponse> call = client.getPhotos("flickr.photos.search", FLICKR_API_KEY, term, "json","1");
+                call.enqueue(new Callback<FlickrPhotosSearchApiResponse>() {
+                    @Override
+                    public void onResponse(Call<FlickrPhotosSearchApiResponse> call, Response<FlickrPhotosSearchApiResponse> response) {
+                        hideProgressBar();
 
-            call.enqueue(new Callback<FlickrPhotosSearchApiResponse>() {
-                @Override
-                public void onResponse(Call<FlickrPhotosSearchApiResponse> call, Response<FlickrPhotosSearchApiResponse> response) {
-                    hideProgressBar();
+                        if (response.isSuccessful()){
+                            List<Photo> photos = response.body().getPhotos().getPhoto();
+                            Log.d(TAG, String.format("%d", photos.size()));
+                            photoCollectionsAdapter = new PhotoCollectionsAdapter(PhotoCollectionsActivity.this, photos);
+                            mRecyclerView.setAdapter(photoCollectionsAdapter);
+                            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(PhotoCollectionsActivity.this, 3);
+                            mRecyclerView.setLayoutManager(layoutManager);
 
-                    if (response.isSuccessful()){
-                        List<Photo> photos = response.body().getPhotos().getPhoto();
-                        Log.d(TAG, String.format("%d", photos.size()));
-                        photoCollectionsAdapter = new PhotoCollectionsAdapter(PhotoCollectionsActivity.this, photos);
-                        mRecyclerView.setAdapter(photoCollectionsAdapter);
-                        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(PhotoCollectionsActivity.this, 3);
-                        mRecyclerView.setLayoutManager(layoutManager);
-
-                        showPhotos();
-                    } else {
-                        showUnsuccessfulMessage();
+                            showPhotos();
+                        } else {
+                            showUnsuccessfulMessage();
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<FlickrPhotosSearchApiResponse> call, Throwable t) {
-                    Log.e(TAG, "onFailure: ",t );
-                    hideProgressBar();
-                    showFailureMessage();
-                }
-            });
+                    @Override
+                    public void onFailure(Call<FlickrPhotosSearchApiResponse> call, Throwable t) {
+                        Log.e(TAG, "onFailure: ",t );
+                        hideProgressBar();
+                        showFailureMessage();
+                    }
+                });
+            }
         }
     }
 }

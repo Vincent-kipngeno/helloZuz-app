@@ -3,6 +3,7 @@ package com.moringaschool.hellozuz.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.userName) EditText mUserName;
     @BindView(R.id.loginButton) Button mLoginButton;
     @BindView(R.id.aboutText) TextView mAboutText;
+    @BindView(R.id.password) EditText mPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view == mLoginButton) {
             String userName = mUserName.getText().toString();
-            Log.e("MainActivity", "I have been reached");
-            Intent intent = new Intent (MainActivity.this, DashboardActivity.class);
-            intent.putExtra("user", userName);
-            startActivity(intent);
-            Log.d("MainActivity", "newsFeeds started");
+            String password = mPassword.getText().toString();
+
+            //Checking if the user submits an empty form
+            if (userName.trim().isEmpty() && password.trim().isEmpty()) {
+                mUserName.setText("");
+                mUserName.setHint("This Field is Required !!!");
+                mUserName.setHintTextColor(Color.RED);
+                mPassword.setText("");
+                mPassword.setHint("This Field is Required !!!");
+                mPassword.setHintTextColor(Color.RED);
+            } else if (userName.trim().isEmpty()){
+                mUserName.setText("");
+                mUserName.setHint("This Field is Required !!!");
+                mUserName.setHintTextColor(Color.RED);
+            } else if (password.trim().isEmpty()){
+                mPassword.setText("");
+                mPassword.setHint("This Field is Required !!!");
+                mPassword.setHintTextColor(Color.RED);
+            } else {
+                Log.e("MainActivity", "I have been reached");
+                Intent intent = new Intent (MainActivity.this, DashboardActivity.class);
+                intent.putExtra("user", userName);
+                startActivity(intent);
+                Log.d("MainActivity", "newsFeeds started");
+            }
         }
     }
 }
