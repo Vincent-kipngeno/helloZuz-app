@@ -1,5 +1,7 @@
 package com.moringaschool.hellozuz.ui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,43 +9,34 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.moringaschool.hellozuz.R;
+import com.moringaschool.hellozuz.models.Photo;
+import com.squareup.picasso.Picasso;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PhotoDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class PhotoDetailsFragment extends Fragment {
+import org.parceler.Parcels;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class PhotoDetailsFragment extends Fragment implements View.OnClickListener {
+    @BindView(R.id.flickrPhotoImageView) ImageView mFlickrPhoto;
+    @BindView(R.id.websiteTextView) TextView mWebsiteTextView;
+    @BindView(R.id.savePhotoButton) Button mSavePhotoButton;
+
+    private Photo mPhoto;
 
     public PhotoDetailsFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PhotoDetails.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PhotoDetailsFragment newInstance(String param1, String param2) {
+    public static PhotoDetailsFragment newInstance(Photo photo) {
         PhotoDetailsFragment fragment = new PhotoDetailsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable("photo", Parcels.wrap(photo));
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,15 +45,29 @@ public class PhotoDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mPhoto = Parcels.unwrap(getArguments().getParcelable("photo"));
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_photo_details, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view =  inflater.inflate(R.layout.fragment_photo_details, container, false);
+        ButterKnife.bind(this, view);
+
+        String photoUrl = "https://farm" + mPhoto.getFarm() +  ".staticflickr.com/" + mPhoto.getServer() + "/" + mPhoto.getId() + "_" + mPhoto.getSecret() + ".jpg";
+        Picasso.get().load(photoUrl).into(mFlickrPhoto);
+
+        mWebsiteTextView.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+       if (view == mWebsiteTextView) {
+           String flickrPhotoUrl = "https://www.flickr.com/photos/" + mPhoto.getOwner() + "/" + mPhoto.getId();
+           Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                   Uri.parse(flickrPhotoUrl));
+           startActivity(webIntent);
+       }
     }
 }

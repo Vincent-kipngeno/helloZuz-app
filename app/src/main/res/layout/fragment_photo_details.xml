@@ -12,7 +12,7 @@
         android:background="@color/colorPrimaryDark">
 
         <ImageView
-            android:id="@+id/restaurantImageView"
+            android:id="@+id/flickrPhotoImageView"
             android:layout_width="match_parent"
             android:layout_height="410dp"
             android:scaleType="centerCrop"
@@ -29,7 +29,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_above="@+id/saveRestaurantButton"
+                android:layout_above="@+id/savePhotoButton"
                 android:paddingLeft="30dp"
                 android:paddingTop="20dp"
                 android:paddingRight="30dp">
@@ -37,7 +37,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View on Yelp"
+                    android:text="View on Flickr"
                     android:id="@+id/websiteTextView"
                     android:drawableLeft="@drawable/baseline_exit_to_app_white_24dp"
                     android:drawablePadding="4dp"
@@ -49,12 +49,12 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/saveRestaurantButton"
+                android:id="@+id/savePhotoButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="@color/colorLightYellow"
-                android:text="Save Restaurant"
+                android:text="Save Photo"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="15sp" />
         </RelativeLayout>
