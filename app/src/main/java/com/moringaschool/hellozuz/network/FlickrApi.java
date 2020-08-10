@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface FlickrApi {
-    @GET("businesses/search")
+    @GET("rest")
     Call<FlickrPhotosSearchApiResponse> getPhotos(
             @Query("method") String method,
             @Query("api_key") String apikey,

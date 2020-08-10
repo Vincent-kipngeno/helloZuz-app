@@ -1,6 +1,7 @@
 package com.moringaschool.hellozuz.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.moringaschool.hellozuz.Constants;
 import com.moringaschool.hellozuz.R;
+import com.moringaschool.hellozuz.adapter.PhotoCollectionsAdapter;
 import com.moringaschool.hellozuz.models.FlickrPhotosSearchApiResponse;
 import com.moringaschool.hellozuz.models.Photo;
 import com.moringaschool.hellozuz.network.FlickrApi;
@@ -35,6 +37,7 @@ public class PhotoCollectionsActivity extends AppCompatActivity implements View.
     @BindView(R.id.photoSearchText) EditText mPhotoSearchText;
     @BindView(R.id.searchButton) Button mSearchButton;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    private PhotoCollectionsAdapter photoCollectionsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +56,13 @@ public class PhotoCollectionsActivity extends AppCompatActivity implements View.
     private void showFailureMessage() {
         mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
         mErrorTextView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
     }
 
     private void showUnsuccessfulMessage() {
         mErrorTextView.setText("Something went wrong. Please try again later");
         mErrorTextView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
     }
 
     private void showPhotos() {
@@ -90,6 +95,13 @@ public class PhotoCollectionsActivity extends AppCompatActivity implements View.
 
                     if (response.isSuccessful()){
                         List<Photo> photos = response.body().getPhotos().getPhoto();
+                        Log.d(TAG, String.format("%d", photos.size()));
+                        photoCollectionsAdapter = new PhotoCollectionsAdapter(PhotoCollectionsActivity.this, photos);
+                        mRecyclerView.setAdapter(photoCollectionsAdapter);
+                        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(PhotoCollectionsActivity.this, 3);
+                        mRecyclerView.setLayoutManager(layoutManager);
+
+                        showPhotos();
                     } else {
                         showUnsuccessfulMessage();
                     }
