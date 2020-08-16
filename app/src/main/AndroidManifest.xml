@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SettingsActivity"></activity>
+        <activity android:name=".ui.FindFriendsActivity"></activity>
+        <activity android:name=".ui.SettingsActivity" />
         <activity android:name=".ui.PhoneLoginActivity" />
         <activity android:name=".ui.RegisterActivity" />
         <activity android:name=".ui.LoginActivity" />
