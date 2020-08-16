@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "849350208632",
+    "firebase_url": "https://hellozuz.firebaseio.com",
+    "project_id": "hellozuz",
+    "storage_bucket": "hellozuz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849350208632:android:8530099ed9af5cb924d18d",
+        "android_client_info": {
+          "package_name": "com.moringaschool.hellozuz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849350208632-erhq0rqoljnrhcfqcmvcihana8n6rrum.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moringaschool.hellozuz",
+            "certificate_hash": "9765bf2c3663c95deb8a7a8ed28755ffaf3dc3cd"
+          }
+        },
+        {
+          "client_id": "849350208632-81fm9ja9eaobnlclo7bac7cqari8oulp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmQZDnSZ2FN84FxYo_f6z7CnqasOKZ1qI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849350208632-81fm9ja9eaobnlclo7bac7cqari8oulp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
