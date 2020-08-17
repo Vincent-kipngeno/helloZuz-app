@@ -80,13 +80,13 @@ public class MainActivity extends AppCompatActivity
 
         if (currentUser == null)
         {
-            SendUserToLoginActivity();
+            sendUserToLoginActivity();
         }
         else
         {
             updateUserStatus("online");
 
-            VerifyUserExistance();
+            verifyUserExistance();
         }
     }
 
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private void VerifyUserExistance()
+    private void verifyUserExistance()
     {
         String currentUserID = mAuth.getCurrentUser().getUid();
 
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
-                    SendUserToSettingsActivity();
+                    sendUserToSettingsActivity();
                 }
             }
 
@@ -164,26 +164,26 @@ public class MainActivity extends AppCompatActivity
         {
             updateUserStatus("offline");
             mAuth.signOut();
-            SendUserToLoginActivity();
+            sendUserToLoginActivity();
         }
         if (item.getItemId() == R.id.main_settings_option)
         {
-            SendUserToSettingsActivity();
+            sendUserToSettingsActivity();
         }
         if (item.getItemId() == R.id.main_create_group_option)
         {
-            RequestNewGroup();
+            requestNewGroup();
         }
         if (item.getItemId() == R.id.main_find_friends_option)
         {
-            SendUserToFindFriendsActivity();
+            sendUserToFindFriendsActivity();
         }
 
         return true;
     }
 
 
-    private void RequestNewGroup()
+    private void requestNewGroup()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialog);
         builder.setTitle("Enter Group Name :");
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
-                    CreateNewGroup(groupName);
+                    createNewGroup(groupName);
                 }
             }
         });
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private void CreateNewGroup(final String groupName)
+    private void createNewGroup(final String groupName)
     {
         RootRef.child("Groups").child(groupName).setValue("")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private void SendUserToLoginActivity()
+    private void sendUserToLoginActivity()
     {
         Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -247,14 +247,14 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void SendUserToSettingsActivity()
+    private void sendUserToSettingsActivity()
     {
         Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(settingsIntent);
     }
 
 
-    private void SendUserToFindFriendsActivity()
+    private void sendUserToFindFriendsActivity()
     {
         Intent findFriendsIntent = new Intent(MainActivity.this, FindFriendsActivity.class);
         startActivity(findFriendsIntent);
