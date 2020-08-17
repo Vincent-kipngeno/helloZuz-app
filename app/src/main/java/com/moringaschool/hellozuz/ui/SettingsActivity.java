@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -93,6 +94,7 @@ public class SettingsActivity extends AppCompatActivity
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
                 startActivityForResult(galleryIntent, GalleryPick);
+                Log.d("SettingsActivity", "Gallery open");
             }
         });
     }
@@ -125,6 +127,7 @@ public class SettingsActivity extends AppCompatActivity
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .setAspectRatio(1, 1)
                     .start(this);
+            Log.d("SettingsActivity", "Cropping");
         }
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
@@ -177,6 +180,7 @@ public class SettingsActivity extends AppCompatActivity
                             String message = task.getException().toString();
                             Toast.makeText(SettingsActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
+                            Log.d("SettingsActivity:", message);
                         }
                     }
                 });

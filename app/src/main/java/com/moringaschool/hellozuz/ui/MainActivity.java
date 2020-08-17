@@ -33,6 +33,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -53,13 +54,12 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         currentUserID = mAuth.getCurrentUser().getUid();
         RootRef = FirebaseDatabase.getInstance().getReference();
 
-
+        ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("HelloZuz");
 

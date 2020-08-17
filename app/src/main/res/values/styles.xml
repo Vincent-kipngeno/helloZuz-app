@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#3e2723</item>
         <item name="colorPrimaryDark">#4e342e</item>
+        <item name="colorPrimary">#3e2723</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="AlertDialog" parent="Base.Theme.AppCompat.Light.Dialog">
