@@ -53,7 +53,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         if (view == mDirectMessagesButton){
-            Intent intent = new Intent (DashboardActivity.this, MessageListActivity.class);
+            Intent intent = new Intent (DashboardActivity.this, MainActivity.class);
             startActivity(intent);
         }
         if (view == mGeneralMessagesButton){
