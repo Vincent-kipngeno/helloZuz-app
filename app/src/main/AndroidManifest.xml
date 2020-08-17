@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ChatActivity"></activity>
+        <activity android:name=".ui.GroupChatActivity"></activity>
+        <activity android:name=".ui.ChatActivity" />
         <activity android:name=".ui.ProfileActivity" />
         <activity android:name=".ui.FindFriendsActivity" />
         <activity android:name=".ui.SettingsActivity" />
