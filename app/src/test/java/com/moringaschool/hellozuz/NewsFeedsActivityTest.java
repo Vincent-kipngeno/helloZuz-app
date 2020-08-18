@@ -3,7 +3,6 @@ package com.moringaschool.hellozuz;
 import android.content.Intent;
 import android.os.Build;
 
-import com.moringaschool.hellozuz.ui.MessageListActivity;
 import com.moringaschool.hellozuz.ui.NewsFeedsActivity;
 
 import org.junit.Before;

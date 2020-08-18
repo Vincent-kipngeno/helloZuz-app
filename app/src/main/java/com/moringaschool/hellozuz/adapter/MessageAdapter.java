@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.moringaschool.hellozuz.models.MessageData;
 import com.moringaschool.hellozuz.R;
 
 import java.util.List;
