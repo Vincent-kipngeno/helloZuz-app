@@ -1,6 +1,7 @@
 package com.moringaschool.hellozuz.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,8 +43,7 @@ public class PhotoCollectionsActivity extends AppCompatActivity {
     public static final String TAG = PhotoCollectionsActivity.class.getSimpleName();
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
-    @BindView(R.id.photoSearchText) EditText mPhotoSearchText;
-    @BindView(R.id.searchButton) Button mSearchButton;
+    @BindView(R.id.main_page_toolbar) Toolbar mToolbar;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     private PhotoCollectionsAdapter photoCollectionsAdapter;
     private SharedPreferences mSharedPreferences;
@@ -56,13 +56,18 @@ public class PhotoCollectionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_photo_collections);
         ButterKnife.bind(this);
 
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("HelloZuz");
+
+        setSearchMessage();
+
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mSearchPhoto = mSharedPreferences.getString(Constants.PREFERENCE_SEARCH_KEY, null);
         if (mSearchPhoto != null) {
+            hideErrorMessage();
             getPhotos(mSearchPhoto);
         }
 
-        setSearchMessage();
     }
 
     private void setSearchMessage() {
@@ -91,6 +96,10 @@ public class PhotoCollectionsActivity extends AppCompatActivity {
 
     private void showProgressBar() {
         mProgressBar.setVisibility(View.VISIBLE);
+        mErrorTextView.setVisibility(View.GONE);
+    }
+
+    private void hideErrorMessage() {
         mErrorTextView.setVisibility(View.GONE);
     }
 
@@ -138,7 +147,7 @@ public class PhotoCollectionsActivity extends AppCompatActivity {
     }
 
     private void getPhotos(String term) {
-        mPhotoSearchText.setTextColor(Color.BLUE);
+
         showProgressBar();
         FlickrApi client = FlickrClient.getClient();
 
