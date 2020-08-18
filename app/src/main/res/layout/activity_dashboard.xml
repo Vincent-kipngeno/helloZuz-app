@@ -30,7 +30,7 @@
         android:drawableTop="@drawable/baseline_chat_white_24dp"
         android:gravity="center|center_horizontal|top|center_vertical"
         android:paddingTop="20dp"
-        android:text="Direct Messages"
+        android:text="Chats"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dashboardTitle" />
@@ -45,7 +45,7 @@
         android:drawableTop="@drawable/baseline_chrome_reader_mode_white_24dp"
         android:gravity="center|center_horizontal|top"
         android:paddingTop="20dp"
-        android:text="General Messages"
+        android:text="Social Stream"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="@+id/directMessageButton"
         app:layout_constraintEnd_toEndOf="parent"
