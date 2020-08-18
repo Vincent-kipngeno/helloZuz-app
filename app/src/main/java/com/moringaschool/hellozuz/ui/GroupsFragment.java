@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,16 +44,37 @@ public class GroupsFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         groupFragmentView = inflater.inflate(R.layout.fragment_group, container, false);
+        list_view = (ListView) groupFragmentView.findViewById(R.id.list_view);
 
 
         GroupRef = FirebaseDatabase.getInstance().getReference().child("Groups");
 
 
-        IntializeFields();
+
+        GroupRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                Set<String> set = new HashSet<>();
+                Iterator iterator = dataSnapshot.getChildren().iterator();
 
 
-        RetrieveAndDisplayGroups();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    set.add(dataSnapshot1.getKey());
+                }
 
+                list_of_groups.clear();
+                list_of_groups.addAll(set);
+                IntializeFields();
+                Log.d("GroupActivity", list_of_groups.get(0));
+                arrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -75,8 +97,7 @@ public class GroupsFragment extends Fragment
 
     private void IntializeFields()
     {
-        list_view = (ListView) groupFragmentView.findViewById(R.id.list_view);
-        arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, list_of_groups);
+        arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.custom_adapter_layout, list_of_groups);
         list_view.setAdapter(arrayAdapter);
     }
 
@@ -92,13 +113,15 @@ public class GroupsFragment extends Fragment
                 Set<String> set = new HashSet<>();
                 Iterator iterator = dataSnapshot.getChildren().iterator();
 
-                while (iterator.hasNext())
-                {
-                    set.add(((DataSnapshot)iterator.next()).getKey());
+
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    set.add(dataSnapshot1.getKey());
                 }
 
                 list_of_groups.clear();
                 list_of_groups.addAll(set);
+                IntializeFields();
+                Log.d("GroupActivity", list_of_groups.get(0));
                 arrayAdapter.notifyDataSetChanged();
             }
 

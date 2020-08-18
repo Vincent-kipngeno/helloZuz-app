@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/design_default_color_on_secondary"
     tools:context="ui.GroupsFragment">
 
 
@@ -11,5 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:background="@color/design_default_color_on_secondary"
+        android:divider="@drawable/gradient"
+        android:dividerHeight="1dp" />
 </RelativeLayout>

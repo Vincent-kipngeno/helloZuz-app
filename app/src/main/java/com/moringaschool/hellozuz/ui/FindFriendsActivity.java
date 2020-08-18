@@ -22,6 +22,7 @@ import com.moringaschool.hellozuz.models.Contacts;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FindFriendsActivity extends AppCompatActivity
@@ -36,7 +37,7 @@ public class FindFriendsActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friends);
-
+        ButterKnife.bind(this);
 
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
 

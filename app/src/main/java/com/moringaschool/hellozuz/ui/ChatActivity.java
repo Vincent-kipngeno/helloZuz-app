@@ -182,7 +182,7 @@ public class ChatActivity extends AppCompatActivity
     protected void onStart()
     {
         super.onStart();
-
+        messagesList.clear();
         RootRef.child("Messages").child(messageSenderID).child(messageReceiverID)
                 .addChildEventListener(new ChildEventListener() {
                     @Override
