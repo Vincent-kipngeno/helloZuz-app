@@ -1,16 +1,23 @@
 package com.moringaschool.hellozuz.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.moringaschool.hellozuz.Constants;
@@ -31,7 +38,7 @@ import retrofit2.Response;
 
 import static com.moringaschool.hellozuz.Constants.FLICKR_API_KEY;
 
-public class PhotoCollectionsActivity extends AppCompatActivity implements View.OnClickListener{
+public class PhotoCollectionsActivity extends AppCompatActivity {
     public static final String TAG = PhotoCollectionsActivity.class.getSimpleName();
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
@@ -39,6 +46,9 @@ public class PhotoCollectionsActivity extends AppCompatActivity implements View.
     @BindView(R.id.searchButton) Button mSearchButton;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     private PhotoCollectionsAdapter photoCollectionsAdapter;
+    private SharedPreferences mSharedPreferences;
+    private String mSearchPhoto;
+    private SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +56,13 @@ public class PhotoCollectionsActivity extends AppCompatActivity implements View.
         setContentView(R.layout.activity_photo_collections);
         ButterKnife.bind(this);
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mSearchPhoto = mSharedPreferences.getString(Constants.PREFERENCE_SEARCH_KEY, null);
+        if (mSearchPhoto != null) {
+            getPhotos(mSearchPhoto);
+        }
+
         setSearchMessage();
-        mSearchButton.setOnClickListener(this);
     }
 
     private void setSearchMessage() {
@@ -79,48 +94,81 @@ public class PhotoCollectionsActivity extends AppCompatActivity implements View.
         mErrorTextView.setVisibility(View.GONE);
     }
 
+
     @Override
-    public void onClick(View view) {
-        if (view == mSearchButton){
-            String term = mPhotoSearchText.getText().toString();
-            if (term.trim().isEmpty()){
-                mPhotoSearchText.setText("");
-                mPhotoSearchText.setHint("This Field is required !!!");
-                mPhotoSearchText.setHintTextColor(Color.RED);
-            } else {
-                mPhotoSearchText.setTextColor(Color.BLUE);
-                showProgressBar();
-                FlickrApi client = FlickrClient.getClient();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        ButterKnife.bind(this);
 
-                Call<FlickrPhotosSearchApiResponse> call = client.getPhotos("flickr.photos.search", FLICKR_API_KEY, term, "json","1");
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
 
-                call.enqueue(new Callback<FlickrPhotosSearchApiResponse>() {
-                    @Override
-                    public void onResponse(Call<FlickrPhotosSearchApiResponse> call, Response<FlickrPhotosSearchApiResponse> response) {
-                        hideProgressBar();
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
 
-                        if (response.isSuccessful()){
-                            List<Photo> photos = response.body().getPhotos().getPhoto();
-                            Log.d(TAG, String.format("%d", photos.size()));
-                            photoCollectionsAdapter = new PhotoCollectionsAdapter(PhotoCollectionsActivity.this, photos);
-                            mRecyclerView.setAdapter(photoCollectionsAdapter);
-                            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(PhotoCollectionsActivity.this, 3);
-                            mRecyclerView.setLayoutManager(layoutManager);
-
-                            showPhotos();
-                        } else {
-                            showUnsuccessfulMessage();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<FlickrPhotosSearchApiResponse> call, Throwable t) {
-                        Log.e(TAG, "onFailure: ",t );
-                        hideProgressBar();
-                        showFailureMessage();
-                    }
-                });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                addToSharedPreferences(s);
+                getPhotos(s);
+                return false;
             }
-        }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                getPhotos(s);
+                return false;
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+    private void addToSharedPreferences(String location) {
+        mEditor.putString(Constants.PREFERENCE_SEARCH_KEY, location).apply();
+    }
+
+    private void getPhotos(String term) {
+        mPhotoSearchText.setTextColor(Color.BLUE);
+        showProgressBar();
+        FlickrApi client = FlickrClient.getClient();
+
+        Call<FlickrPhotosSearchApiResponse> call = client.getPhotos("flickr.photos.search", FLICKR_API_KEY, term, "json","1");
+
+        call.enqueue(new Callback<FlickrPhotosSearchApiResponse>() {
+            @Override
+            public void onResponse(Call<FlickrPhotosSearchApiResponse> call, Response<FlickrPhotosSearchApiResponse> response) {
+                hideProgressBar();
+
+                if (response.isSuccessful()){
+                    List<Photo> photos = response.body().getPhotos().getPhoto();
+                    Log.d(TAG, String.format("%d", photos.size()));
+                    photoCollectionsAdapter = new PhotoCollectionsAdapter(PhotoCollectionsActivity.this, photos);
+                    mRecyclerView.setAdapter(photoCollectionsAdapter);
+                    RecyclerView.LayoutManager layoutManager = new GridLayoutManager(PhotoCollectionsActivity.this, 3);
+                    mRecyclerView.setLayoutManager(layoutManager);
+
+                    showPhotos();
+                } else {
+                    showUnsuccessfulMessage();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FlickrPhotosSearchApiResponse> call, Throwable t) {
+                Log.e(TAG, "onFailure: ",t );
+                hideProgressBar();
+                showFailureMessage();
+            }
+        });
     }
 }

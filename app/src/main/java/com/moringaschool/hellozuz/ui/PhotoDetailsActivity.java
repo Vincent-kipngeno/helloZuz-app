@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import com.moringaschool.hellozuz.R;
 import com.moringaschool.hellozuz.adapter.PhotoPagerAdapter;
