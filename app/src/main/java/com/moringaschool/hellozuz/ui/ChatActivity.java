@@ -124,7 +124,7 @@ public class ChatActivity extends AppCompatActivity
         SendFilesButton = (ImageButton) findViewById(R.id.send_files_btn);
         MessageInputText = (EditText) findViewById(R.id.input_message);
 
-        messageAdapter = new MessageAdapter(messagesList);
+        messageAdapter = new MessageAdapter(ChatActivity.this ,messagesList);
         userMessagesList = (RecyclerView) findViewById(R.id.private_messages_list_of_users);
         linearLayoutManager = new LinearLayoutManager(this);
         userMessagesList.setLayoutManager(linearLayoutManager);
@@ -250,7 +250,7 @@ public class ChatActivity extends AppCompatActivity
 
             Map<String, Object> messageBodyDetails = new HashMap<>();
             messageBodyDetails.put(messageSenderRef + "/" + messagePushID, messageTextBody);
-            messageBodyDetails.put( messageReceiverRef + "/" + messagePushID, messageTextBody);
+            messageBodyDetails.put(messageReceiverRef + "/" + messagePushID, messageTextBody);
 
             RootRef.updateChildren(messageBodyDetails).addOnCompleteListener(new OnCompleteListener() {
                 @Override
